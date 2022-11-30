@@ -1,10 +1,14 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
+
 async function run () {
   const browser = await puppeteer.launch({
-    defaultViewport: {width: 1920, height: 1080}
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    ignoreHTTPSErrors: true,
+    dumpio: false
   });
+
   const page = await browser.newPage();
   await page.goto('https://www.google.com/search?q=bitcoin');
   await sleep(3000);
